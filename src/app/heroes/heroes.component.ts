@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { NgFor} from '@angular/common';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ export class HeroesComponent {
   heroes: Hero[] = [];
   selectedHero?: Hero;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.getHeroes();
@@ -27,6 +28,9 @@ export class HeroesComponent {
   }
 
   onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+    if (hero != this.selectedHero){
+      this.messageService.add(`${hero.name} details`);
+      this.selectedHero = hero;
+    }
   }
 }

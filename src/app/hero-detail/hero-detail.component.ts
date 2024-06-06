@@ -3,6 +3,7 @@ import { Hero } from '../hero';
 import { NgIf, UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   standalone: true,
   selector: 'app-hero-detail',
